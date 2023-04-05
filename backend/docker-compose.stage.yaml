@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  my-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # volumes:
+    #   - ./scr:/myfolder/scr
+    ports:
+      - 3000:3000
+    env_file:
+      - ./.env.stage
+
+  my-database:
+    platform: linux/x86_64
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: 'mystage04'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - 3306:3306

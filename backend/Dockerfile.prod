@@ -1,0 +1,12 @@
+# 가상컴퓨터에서 express를 설치. 즉, backend서버
+# 배포용
+FROM node:14
+
+WORKDIR /myfolder/
+COPY ./package.json /myfolder/ 
+COPY ./yarn.lock /myfolder/ 
+RUN yarn install --production
+
+COPY . /myfolder/
+RUN yarn build
+CMD yarn start:prod
